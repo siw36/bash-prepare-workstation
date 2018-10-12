@@ -18,7 +18,7 @@ __Cloud clients__
 - awscli
 - azure-cli
 
-__Orchestration__
+__Orchestration binaries__
 - kubectl
 - openshift client (oc)
 
