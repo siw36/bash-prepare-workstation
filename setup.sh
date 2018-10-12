@@ -3,6 +3,9 @@
 # Detect the host os type
 HOSTOS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 
+# Set home path
+UPATH=$HOME
+
 # Function for loading animation
 function loading {
         PID=$1
@@ -19,7 +22,7 @@ function loading {
 # Call the loading animation with loading $! after you've sent a command in bg with &
 
 # Ask for sudo password
-[ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
+sudo printf "Starting script..."
 
 ######################################################################################
 # OS SPECIFIC
@@ -80,33 +83,38 @@ esac
 # UNIVERSAL
 ######################################################################################
 ### SET ALIASES
-echo "alias vi='vim'" >> ~/.bashrc
+echo "alias vi='vim'" >> $UPATH/.bashrc
 
 ### VIM CONFIG
-echo 'set number' >> ~/.vimrc
+# Check if vimrc is present
+if [ ! -f $UPATH/.vimrc ]; then
+    touch $UPATH/.vimrc
+fi
+echo 'set number' >> $UPATH/.vimrc
 
 ### INSTALL OPENSHIFT CLIENT
 printf "***Install openshift-cli: downloading oc binary from github, placing it in /usr/bin\n"
 printf "***This script installs version v3.11.0 of oc\n"
 printf "***Check: https://github.com/openshift/origin/releases for a newer version\n"
-sudo wget -O /tmp/oc-client.tar.gz https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
-sudo tar -zxvf /tmp/oc-client.tar.gz
-sudo mv /tmp/oc /usr/bin/oc
+wget -O /tmp/oc-client.tar.gz https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
+tar -zxvf /tmp/oc-client.tar.gz -C /tmp/
+sudo mv /tmp/openshift-origin-client-tools*/oc $UPATH/.local/bin/oc
+sudo mv /tmp/openshift-origin-client-tools*/kubectl $UPATH/.local/bin/kubectl
 printf ">>>Installation finished\n\n"
 
 ### INSTALL AWS CLIENT
 printf "***Install awscli: installing pip followed by awscli\n"
-sudo curl -O https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-sudo python /tmp/get-pip.py --user
-echo 'export PATH=~/.local/bin:$PATH' >> ~/.bash_profile
-sudo source ~/.bash_profile
+curl -o /tmp/get-pip.py -O https://bootstrap.pypa.io/get-pip.py
+python /tmp/get-pip.py --user
+echo 'export PATH=~/.local/bin:$PATH' >> $UPATH/.bash_profile
+source $UPATH/.bash_profile
 pip install awscli --upgrade --user
 printf ">>>Installation finished\n\n"
 
 ### REFRESH CURRENT BASH SESSION
-source ~/.bash_profile
-source ~/.bashrc
-source ~/.vimrc
+source $UPATH/.bash_profile
+source $UPATH/.bashrc
+source $UPATH/.vimrc
 
 exit 0
 
