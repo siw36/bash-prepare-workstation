@@ -109,8 +109,8 @@ printf "***This script installs version v3.11.0 of oc\n"
 printf "***Check: https://github.com/openshift/origin/releases for a newer version\n"
 wget -O /tmp/oc-client.tar.gz https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
 tar -zxvf /tmp/oc-client.tar.gz -C /tmp/
-sudo mv /tmp/openshift-origin-client-tools*/oc $UPATH/.local/bin/oc
-sudo mv /tmp/openshift-origin-client-tools*/kubectl $UPATH/.local/bin/kubectl
+mv /tmp/openshift-origin-client-tools*/oc $UPATH/.local/bin/oc
+mv /tmp/openshift-origin-client-tools*/kubectl $UPATH/.local/bin/kubectl
 printf ">>>Installation finished\n\n"
 
 ### INSTALL AWS CLIENT
