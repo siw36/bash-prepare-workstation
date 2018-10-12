@@ -85,7 +85,7 @@ esac
 ### SET ALIASES
 printf "***Set aliases\n"
 echo "alias vi='vim'" >> $UPATH/.bashrc
-printf ">>>Aliases set\n"
+printf ">>>Aliases set\n\n"
 
 ### VIM CONFIG
 printf "***Configuring vim\n"
@@ -94,14 +94,14 @@ if [ ! -f $UPATH/.vimrc ]; then
     touch $UPATH/.vimrc
 fi
 echo 'set number' >> $UPATH/.vimrc
-printf ">>>VIM configured\n"
+printf ">>>VIM configured\n\n"
 
 ### Setting up local bin dir for user
 printf "***Check if $UPATH/.local/bin is present if not create it\n"
 if [ ! -d $UPATH/.local/bin ]; then
     mkdir -p $UPATH/.local/bin
 fi
-printf ">>>Check done\n"
+printf ">>>Check done\n\n"
 
 ### INSTALL OPENSHIFT CLIENT
 printf "***Install openshift-cli: downloading oc binary from github, placing it in $UPATH/.local/bin\n"
@@ -119,7 +119,7 @@ curl -o /tmp/get-pip.py -O https://bootstrap.pypa.io/get-pip.py
 python /tmp/get-pip.py --user
 echo 'export PATH=~/.local/bin:$PATH' >> $UPATH/.bash_profile
 source $UPATH/.bash_profile
-pip install awscli --upgrade --user
+$UPATH/.local/bin/pip install awscli --upgrade --user
 printf ">>>Installation finished\n\n"
 
 ### REFRESH CURRENT BASH SESSION
@@ -127,7 +127,7 @@ printf "***Importing new parameters\n"
 source $UPATH/.bash_profile
 source $UPATH/.bashrc
 source $UPATH/.vimrc
-printf ">>>Import done\n"
-printf ">>>Workstation preparation is done...\n"
+printf ">>>Import done\n\n"
+printf ">>>Workstation preparation is done...\n\n"
 exit 0
 
