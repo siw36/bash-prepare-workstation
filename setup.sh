@@ -22,7 +22,7 @@ function loading {
 # Call the loading animation with loading $! after you've sent a command in bg with &
 
 # Ask for sudo password
-sudo printf "Starting script..."
+sudo printf "Starting script...\n"
 
 ######################################################################################
 # OS SPECIFIC
