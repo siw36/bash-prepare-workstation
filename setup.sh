@@ -5,7 +5,6 @@ HOSTOS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 
 # Function for loading animation
 function loading {
-	printf "\n"
         PID=$1
         i=1
         sp="/-\|" 
@@ -47,13 +46,18 @@ case $HOSTOS in
 	printf ">>>Installation finished\n\n"
 	;;
 	######################################################################################
-	# HOST OS IS UBUNTU
+	# HOST OS IS DEBIAN/UBUNTU
 	######################################################################################
 	'"Ubuntu"'|'"Debian GNU/Linux"')
 	# Update
 	printf "***Update the System\n"
-	sudo apt-get -y -q update && sudo apt-get -y -q upgrade
+	sudo apt-get -y -q update &
+	loading $!
 	printf ">>>Update finished\n\n"
+	printf "***Upgrade the System\n"
+	sudo apt-get -y -q upgrade &
+	loading $!
+	printf ">>>Upgrade finished\n\n"
 	# Install packages
 	printf "***Install packages: git openssh openssh-clients scp vim ansible wget curl\n"
 	sudo apt-get -y -q git openssh openssh-clients scp vim ansible wget curl
