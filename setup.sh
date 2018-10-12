@@ -82,4 +82,6 @@ pip install awscli --upgrade --user
 printf ">>>Installation finished\n\n"
 
 ### REFRESH CURRENT BASH SESSION
-sudo source ~/.bash_profile
+source ~/.bash_profile
+source ~/.bashrc
+source ~/.vimrc
