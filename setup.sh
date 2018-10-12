@@ -39,7 +39,7 @@ case $HOSTOS in
 	loading $!
 	printf ">>>Update finished\n\n"
 	# Install packages
-	printf "***Install packages: git openssh openssh-clients scp vim ansible wget curl\n"
+	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
 	sudo yum -y -q install git openssh openssh-clients scp vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
@@ -62,7 +62,7 @@ case $HOSTOS in
 	loading $!
 	printf ">>>Upgrade finished\n\n"
 	# Install packages
-	printf "***Install packages: git openssh openssh-clients scp vim ansible wget curl\n"
+	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
 	sudo apt-get -y -q install git openssh openssh-clients scp vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
