@@ -83,17 +83,28 @@ esac
 # UNIVERSAL
 ######################################################################################
 ### SET ALIASES
+printf "***Set aliases\n"
 echo "alias vi='vim'" >> $UPATH/.bashrc
+printf ">>>Aliases set\n"
 
 ### VIM CONFIG
+printf "***Configuring vim\n"
 # Check if vimrc is present
 if [ ! -f $UPATH/.vimrc ]; then
     touch $UPATH/.vimrc
 fi
 echo 'set number' >> $UPATH/.vimrc
+printf ">>>VIM configured\n"
+
+### Setting up local bin dir for user
+printf "***Check if $UPATH/.local/bin is present if not create it\n"
+if [ ! -d $UPATH/.local/bin ]; then
+    mkdir -p $UPATH/.local/bin
+fi
+printf ">>>Check done\n"
 
 ### INSTALL OPENSHIFT CLIENT
-printf "***Install openshift-cli: downloading oc binary from github, placing it in /usr/bin\n"
+printf "***Install openshift-cli: downloading oc binary from github, placing it in $UPATH/.local/bin\n"
 printf "***This script installs version v3.11.0 of oc\n"
 printf "***Check: https://github.com/openshift/origin/releases for a newer version\n"
 wget -O /tmp/oc-client.tar.gz https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
@@ -112,9 +123,11 @@ pip install awscli --upgrade --user
 printf ">>>Installation finished\n\n"
 
 ### REFRESH CURRENT BASH SESSION
+printf "***Importing new parameters\n"
 source $UPATH/.bash_profile
 source $UPATH/.bashrc
 source $UPATH/.vimrc
-
+printf ">>>Import done\n"
+printf ">>>Workstation preparation is done...\n"
 exit 0
 
