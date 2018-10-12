@@ -1,2 +1,1 @@
-# prepare-workstation
-Prepare a new workstation (for me)
+# Prepare a new workstation for DevOps infra administration
