@@ -40,7 +40,7 @@ case $HOSTOS in
 	printf ">>>Update finished\n\n"
 	# Install packages
 	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
-	sudo yum -y -q install git openssh openssh-clients scp vim ansible wget curl
+	sudo yum -y -q install git openssh openssh-clients vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
 	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -63,7 +63,7 @@ case $HOSTOS in
 	printf ">>>Upgrade finished\n\n"
 	# Install packages
 	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
-	sudo apt-get -y -q install git openssh openssh-clients scp vim ansible wget curl
+	sudo apt-get -y -q install git openssh openssh-clients vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
 	AZ_REPO=$(lsb_release -cs)
