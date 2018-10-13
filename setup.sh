@@ -103,6 +103,11 @@ if [ ! -d $UPATH/.local/bin ]; then
 fi
 printf ">>>Check done\n\n"
 
+### INSTALL VMWARE API CLIENT
+printf "***Install pyvmomi (VMware ESXi & vCenter API client)\n"
+pip install --upgrade --user pyvmomi
+printf ">>>Installation finished\n\n"
+
 ### INSTALL OPENSHIFT CLIENT
 printf "***Install openshift-cli: downloading oc binary from github, placing it in $UPATH/.local/bin\n"
 printf "***This script installs version v3.11.0 of oc\n"
