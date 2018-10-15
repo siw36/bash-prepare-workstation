@@ -15,12 +15,16 @@ __Packages__
 - pip
 
 __Cloud clients__
-- awscli
+- aws-cli
 - azure-cli
 
-__Orchestration binaries__
+__Container related (binaries)__
 - kubectl
 - openshift client (oc)
+- docker (only cli client)
+
+__VMware API__
+- pyvmomi
 
 __Further config__
 - vim is set as alias for vi
