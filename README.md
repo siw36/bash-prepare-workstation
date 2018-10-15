@@ -34,7 +34,7 @@ __Further config__
 
 # Supported Linux systems (Still testing)
 - RHEL 7.5
-- CentOS 7
+- CentOS 7 :heavy_check_mark:
 - Fedora 28 :heavy_check_mark:
 - Ubuntu 18.04 :heavy_check_mark:
 - Debian 9.5
