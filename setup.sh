@@ -30,9 +30,9 @@ sudo printf "Starting script...\n"
 
 case $HOSTOS in
 	######################################################################################
-	# HOST OS IS CENTOS/FEDORA/RHEL
+	# HOST OS IS FEDORA
 	######################################################################################
-	'"CentOS Linux"'|'Fedora'|'"Red Hat Enterprise Linux Server"')
+	'Fedora')
 	# Update
 	printf "***Update the System\n"
 	sudo yum -y -q update &
@@ -46,6 +46,102 @@ case $HOSTOS in
 	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 	sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
 	sudo yum -y -q install azure-cli
+	printf ">>>Installation finished\n\n"
+	;;
+	######################################################################################
+	# HOST OS IS RHEL
+	######################################################################################
+	'"Red Hat Enterprise Linux Server"')
+	# Update
+	printf "***Update the System\n"
+	sudo yum -y -q update &
+	loading $!
+	printf ">>>Update finished\n\n"
+	# Install packages
+	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
+	sudo yum -y -q install git openssh openssh-clients vim ansible wget curl
+	printf ">>>Installation finished\n\n"
+	printf "***Install azure-cli: adding azure repo key and repo\n"
+	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+	sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
+	sudo yum -y -q install azure-cli
+	printf ">>>Installation finished\n\n"
+	;;
+	######################################################################################
+	# HOST OS IS CENTOS
+	######################################################################################
+	'"CentOS Linux"')
+	# Update
+	printf "***Update the System\n"
+	sudo yum -y -q update &
+	loading $!
+	printf ">>>Update finished\n\n"
+	# Install packages
+	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
+	sudo yum -y -q install git openssh openssh-clients vim ansible wget curl
+	printf ">>>Installation finished\n\n"
+	printf "***Install azure-cli: adding azure repo key and repo\n"
+	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+	sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
+	sudo yum -y -q install azure-cli
+	printf ">>>Installation finished\n\n"
+	;;
+	######################################################################################
+	# HOST OS IS UBUNTU
+	######################################################################################
+	'"Ubuntu"')
+	# Update
+	printf "***Update the System\n"
+	sudo apt-get -y -q update &
+	loading $!
+	printf ">>>Update finished\n\n"
+	printf "***Upgrade the System\n"
+	sudo apt-get -y -q upgrade &
+	loading $!
+	printf ">>>Upgrade finished\n\n"
+	# Add ansible repo
+	sudo apt-get install software-properties-common
+	sudo apt-add-repository ppa:ansible/ansible
+	sudo apt-get update
+	# Install packages
+	printf "***Install packages: python git vim ansible wget curl\n"
+	sudo apt-get -y -q install python git vim ansible wget curl
+	printf ">>>Installation finished\n\n"
+	printf "***Install azure-cli: adding azure repo key and repo\n"
+	AZ_REPO=$(lsb_release -cs)
+	echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+	curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+	sudo apt-get update
+	sudo apt-get -y -q install apt-transport-https azure-cli
+	printf ">>>Installation finished\n\n"
+	;;
+	######################################################################################
+	# HOST OS IS DEBIAN
+	######################################################################################
+	'"Debian GNU/Linux"')
+	# Update
+	printf "***Update the System\n"
+	sudo apt-get -y -q update &
+	loading $!
+	printf ">>>Update finished\n\n"
+	printf "***Upgrade the System\n"
+	sudo apt-get -y -q upgrade &
+	loading $!
+	printf ">>>Upgrade finished\n\n"
+	# Add ansible repo
+	sudo echo 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main' >> /etc/apt/sources.list
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+	sudo apt-get update
+	# Install packages
+	printf "***Install packages: python git vim ansible wget curl\n"
+	sudo apt-get -y -q install python git vim ansible wget curl
+	printf ">>>Installation finished\n\n"
+	printf "***Install azure-cli: adding azure repo key and repo\n"
+	AZ_REPO=$(lsb_release -cs)
+	echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+	curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+	sudo apt-get update
+	sudo apt-get -y -q install apt-transport-https azure-cli
 	printf ">>>Installation finished\n\n"
 	;;
 	*)
