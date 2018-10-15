@@ -106,15 +106,15 @@ case $HOSTOS in
 	printf ">>>Upgrade finished\n\n"
 	# Update ubuntu repos
 	printf "***Update repos to use main, restricted, universe, multiverse\n"
-	sudo echo -e 'deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu bionic-security main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse' > /etc/apt/sources.list
+	echo -e 'deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu bionic-security main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse'  | sudo tee -a /etc/apt/sources.list
 	sudo apt-get update
-	printf ">>>Repos updated\n"
+	printf ">>>Repos updated\n\n"
 	# Add ansible repo
 	printf "***Add ansible repo\n"
 	sudo apt-get -y -q install software-properties-common
 	sudo apt-add-repository -y ppa:ansible/ansible
 	sudo apt-get update
-	printf ">>>Repo added\n"
+	printf ">>>Repo added\n\n"
 	# Install packages
 	printf "***Install packages: python git vim ansible wget curl\n"
 	sudo apt-get -y -q install python git vim ansible wget curl
