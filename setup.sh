@@ -108,6 +108,15 @@ printf "***Install pyvmomi (VMware ESXi & vCenter API client)\n"
 pip install --upgrade --user pyvmomi
 printf ">>>Installation finished\n\n"
 
+### INSTALL DOCKER CLIENT
+printf "***Install docker (Docker client without the daemon dockerd)\n"
+printf "***This script installs version 18.06.1-ce of docker\n"
+printf "***Check: https://download.docker.com/linux/static/stable/x86_64/\n"
+wget -O /tmp/docker-client.tar.gz https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz
+tar -zxvf /tmp/docker-client.tar.gz -C /tmp/
+mv /tmp/docker/docker $UPATH/.local/bin/docker
+printf ">>>Installation finished\n\n"
+
 ### INSTALL OPENSHIFT CLIENT
 printf "***Install openshift-cli: downloading oc binary from github, placing it in $UPATH/.local/bin\n"
 printf "***This script installs version v3.11.0 of oc\n"
