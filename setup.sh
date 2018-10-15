@@ -59,6 +59,7 @@ case $HOSTOS in
 	printf ">>>Update finished\n\n"
 	# Install packages
 	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
+	sudo subscription-manager repos --enable rhel-7-server-ansible-2.6-rpms
 	sudo yum -y -q install git openssh openssh-clients vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
