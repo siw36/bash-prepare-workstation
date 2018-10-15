@@ -66,8 +66,8 @@ case $HOSTOS in
 	sudo apt-add-repository ppa:ansible/ansible
 	sudo apt-get update
 	# Install packages
-	printf "***Install packages: git vim ansible wget curl\n"
-	sudo apt-get -y -q install git vim ansible wget curl
+	printf "***Install packages: python git vim ansible wget curl\n"
+	sudo apt-get -y -q install python git vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
 	AZ_REPO=$(lsb_release -cs)
@@ -95,8 +95,8 @@ case $HOSTOS in
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
 	sudo apt-get update
 	# Install packages
-	printf "***Install packages: git vim ansible wget curl\n"
-	sudo apt-get -y -q install git vim ansible wget curl
+	printf "***Install packages: python git vim ansible wget curl\n"
+	sudo apt-get -y -q install python git vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
 	AZ_REPO=$(lsb_release -cs)
