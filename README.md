@@ -32,10 +32,11 @@ __Further config__
 - a directory is created in the user home dir (for local binaries like pip or oc)
 
 
-# Supported Linux systems
+# Supported Linux systems (Still testing)
 - RHEL 7.5
 - CentOS 7
 - Fedora Server 28
+- Fedora Workstation 28 :heavy_check_mark:
 - Debian 9.5
 - Ubuntu 18.04
 
