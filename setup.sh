@@ -77,6 +77,10 @@ case $HOSTOS in
 	sudo yum -y -q update &
 	loading $!
 	printf ">>>Update finished\n\n"
+	# Install EPEL
+	printf "***Install EPEL repo\n
+	yum -y -q install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+	printf ">>>Installation finished\n\n"
 	# Install packages
 	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
 	sudo yum -y -q install git openssh openssh-clients vim ansible wget curl
