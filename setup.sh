@@ -140,10 +140,6 @@ case $HOSTOS in
 	sudo apt-get -y -q upgrade &
 	loading $!
 	printf ">>>Upgrade finished\n\n"
-	# Add ansible repo
-	sudo echo 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main' >> /etc/apt/sources.list
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
-	sudo apt-get update
 	# Install packages
 	printf "***Install packages: python git vim ansible wget curl\n"
 	sudo apt-get -y -q install python git vim ansible wget curl
