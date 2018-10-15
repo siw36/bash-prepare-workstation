@@ -36,7 +36,5 @@ __Further config__
 - RHEL 7.5
 - CentOS 7
 - Fedora 28 :heavy_check_mark:
-- Debian 9.5
-- Ubuntu 18.04
 
 *Note: This script may work for other Linux derivatives. Only the above are tested.*
