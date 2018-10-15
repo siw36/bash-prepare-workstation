@@ -229,6 +229,7 @@ source $UPATH/.bash_profile
 source $UPATH/.bashrc
 source $UPATH/.vimrc
 printf ">>>Import done\n\n"
-printf ">>>Workstation preparation is done...\n\n"
+printf ">>>Workstation preparation is done...\n"
+printf ">>>Start a new shell to apply the new env variables!\n\n"
 exit 0
 
