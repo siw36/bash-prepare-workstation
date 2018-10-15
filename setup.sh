@@ -78,7 +78,7 @@ case $HOSTOS in
 	loading $!
 	printf ">>>Update finished\n\n"
 	# Install EPEL
-	printf "***Install EPEL repo\n
+	printf "***Install EPEL repo\n"
 	yum -y -q install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 	printf ">>>Installation finished\n\n"
 	# Install packages
@@ -105,8 +105,8 @@ case $HOSTOS in
 	loading $!
 	printf ">>>Upgrade finished\n\n"
 	# Add ansible repo
-	sudo apt-get install software-properties-common
-	sudo apt-add-repository ppa:ansible/ansible
+	sudo apt-get -y -q install software-properties-common
+	sudo apt-add-repository -y ppa:ansible/ansible
 	sudo apt-get update
 	# Install packages
 	printf "***Install packages: python git vim ansible wget curl\n"
