@@ -101,7 +101,15 @@ printf "***Check if $UPATH/.local/bin is present if not create it\n"
 if [ ! -d $UPATH/.local/bin ]; then
     mkdir -p $UPATH/.local/bin
 fi
+echo 'export PATH=~/.local/bin:$PATH' >> $UPATH/.bash_profile
+source $UPATH/.bash_profile
 printf ">>>Check done\n\n"
+
+### INSTALL PIP
+printf "***Install pip (Python package manager)\n"
+curl -o /tmp/get-pip.py -O https://bootstrap.pypa.io/get-pip.py
+python /tmp/get-pip.py --user
+printf ">>>Installation finished\n\n"
 
 ### INSTALL VMWARE API CLIENT
 printf "***Install pyvmomi (VMware ESXi & vCenter API client)\n"
@@ -128,11 +136,7 @@ mv /tmp/openshift-origin-client-tools*/kubectl $UPATH/.local/bin/kubectl
 printf ">>>Installation finished\n\n"
 
 ### INSTALL AWS CLIENT
-printf "***Install awscli: installing pip followed by awscli\n"
-curl -o /tmp/get-pip.py -O https://bootstrap.pypa.io/get-pip.py
-python /tmp/get-pip.py --user
-echo 'export PATH=~/.local/bin:$PATH' >> $UPATH/.bash_profile
-source $UPATH/.bash_profile
+printf "***Install awscli\n"
 $UPATH/.local/bin/pip install awscli --upgrade --user
 printf ">>>Installation finished\n\n"
 
