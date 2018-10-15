@@ -106,11 +106,7 @@ case $HOSTOS in
 	printf ">>>Upgrade finished\n\n"
 	# Update ubuntu repos
 	printf "***Update repos to use main, restricted, universe, multiverse\n"
-	sudo cat <<EOT > /etc/apt/sources.list
-	deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse
-	deb http://archive.ubuntu.com/ubuntu bionic-security main restricted universe multiverse
-	deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse
-	EOT
+	sudo echo -e 'deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu bionic-security main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse' > /etc/apt/sources.list
 	sudo apt-get update
 	printf ">>>Repos updated\n"
 	# Add ansible repo
