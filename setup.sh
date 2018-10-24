@@ -220,7 +220,7 @@ $UPATH/.local/bin/pip install awscli --upgrade --user
 printf ">>>Installation finished\n\n"
 
 ### SETUP GIT USER AND EMAIL
-printd "***Setup git\n"
+printf "***Setup git\n"
 printf "The following git information is set globally for all repositories.\n"
 read -r -p "Enter your git user name: " GITUSER
 read -r -p "Enter your git user email: " GITEMAIL
