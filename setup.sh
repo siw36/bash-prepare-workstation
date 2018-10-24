@@ -221,9 +221,7 @@ printf ">>>Installation finished\n\n"
 
 ### REFRESH CURRENT BASH SESSION
 printf "***Importing new parameters\n"
-source $UPATH/.bash_profile
-source $UPATH/.bashrc
-source $UPATH/.vimrc
+reset
 printf ">>>Import done\n\n"
 printf ">>>Workstation preparation is done...\n"
 printf ">>>Start a new shell to apply the new env variables!\n\n"
