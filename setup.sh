@@ -166,6 +166,17 @@ printf "***Set aliases\n"
 echo "alias vi='vim'" >> $UPATH/.bashrc
 printf ">>>Aliases set\n\n"
 
+### SHOW GIT BRANCH IN SHELL PATH
+printf "***Show git branch in CLI path\n"
+cat <<EOT >> $UPATH/.bashrc
+# Show git branch in shell path
+git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1="[\u@\h \W]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\$ "
+EOT
+printf ">>>Git branch added\n\n"
+
 ### VIM CONFIG
 printf "***Configuring vim\n"
 # Check if vimrc is present
