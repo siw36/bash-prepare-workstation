@@ -184,6 +184,9 @@ if [ ! -f $UPATH/.vimrc ]; then
     touch $UPATH/.vimrc
 fi
 echo 'set number' >> $UPATH/.vimrc
+echo 'set tabstop=2' >> $UPATH/.vimrc
+echo 'set shiftwidth=2' >> $UPATH/.vimrc
+echo 'set expandtab' >> $UPATH/.vimrc
 printf ">>>VIM configured\n\n"
 
 ### Setting up local bin dir for user
