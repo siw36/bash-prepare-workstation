@@ -35,17 +35,17 @@ case $HOSTOS in
 	'Fedora')
 	# Update
 	printf "***Update the System\n"
-	sudo yum -y -q update &
+	sudo dnf -y -q update &
 	loading $!
 	printf ">>>Update finished\n\n"
 	# Install packages
 	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
-	sudo yum -y -q install git openssh openssh-clients vim ansible wget curl
+	sudo dnf -y -q install git openssh openssh-clients vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
 	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 	sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
-	sudo yum -y -q install azure-cli
+	sudo dnf -y -q install azure-cli
 	printf ">>>Installation finished\n\n"
 	;;
 	######################################################################################
@@ -166,6 +166,17 @@ printf "***Set aliases\n"
 echo "alias vi='vim'" >> $UPATH/.bashrc
 printf ">>>Aliases set\n\n"
 
+### SHOW GIT BRANCH IN SHELL PATH
+printf "***Show git branch in CLI path\n"
+cat <<EOT >> $UPATH/.bashrc
+# Show git branch in shell path
+git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1="[\u@\h \W]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\$ "
+EOT
+printf ">>>Git branch added\n\n"
+
 ### VIM CONFIG
 printf "***Configuring vim\n"
 # Check if vimrc is present
@@ -173,6 +184,9 @@ if [ ! -f $UPATH/.vimrc ]; then
     touch $UPATH/.vimrc
 fi
 echo 'set number' >> $UPATH/.vimrc
+echo 'set tabstop=2' >> $UPATH/.vimrc
+echo 'set shiftwidth=2' >> $UPATH/.vimrc
+echo 'set expandtab' >> $UPATH/.vimrc
 printf ">>>VIM configured\n\n"
 
 ### Setting up local bin dir for user
@@ -219,11 +233,19 @@ printf "***Install awscli\n"
 $UPATH/.local/bin/pip install awscli --upgrade --user
 printf ">>>Installation finished\n\n"
 
+### SETUP GIT USER AND EMAIL
+printf "***Setup git\n"
+printf "The following git information is set globally for all repositories.\n"
+read -r -p "Enter your git user name: " GITUSER
+read -r -p "Enter your git user email: " GITEMAIL
+git config --global user.name "$GITNAME"
+git config --global user.email "$GITEMAIL"
+printf ">>>Git setup finished\n\n"
+
 ### REFRESH CURRENT BASH SESSION
 printf "***Importing new parameters\n"
 reset
 printf ">>>Import done\n\n"
 printf ">>>Workstation preparation is done...\n"
-printf ">>>Start a new shell to apply the new env variables!\n\n"
 exit 0
 
