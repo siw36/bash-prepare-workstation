@@ -35,17 +35,17 @@ case $HOSTOS in
 	'Fedora')
 	# Update
 	printf "***Update the System\n"
-	sudo yum -y -q update &
+	sudo dnf -y -q update &
 	loading $!
 	printf ">>>Update finished\n\n"
 	# Install packages
 	printf "***Install packages: git openssh openssh-clients vim ansible wget curl\n"
-	sudo yum -y -q install git openssh openssh-clients vim ansible wget curl
+	sudo dnf -y -q install git openssh openssh-clients vim ansible wget curl
 	printf ">>>Installation finished\n\n"
 	printf "***Install azure-cli: adding azure repo key and repo\n"
 	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 	sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
-	sudo yum -y -q install azure-cli
+	sudo dnf -y -q install azure-cli
 	printf ">>>Installation finished\n\n"
 	;;
 	######################################################################################
